@@ -18,8 +18,8 @@
 # -- Project information -----------------------------------------------------
 import os
 import sys
-sys.path.insert(0, os.path.abspath('/home/liupeng/workspace/GIS/python/arctern'))
-sys.path.insert(1, os.path.abspath('/home/liupeng/workspace/GIS/arctern/spark/pyspark/arctern_pyspark'))
+sys.path.insert(0, os.path.abspath('/home/sheep/workspace/arctern/xge/GIS/python/arctern'))
+sys.path.insert(1, os.path.abspath('/home/sheep/workspace/arctern/xge/GIS/spark/pyspark/arctern_pyspark'))
 project = 'Arctern'
 copyright = '2020, zilliz'
 author = 'zilliz'
