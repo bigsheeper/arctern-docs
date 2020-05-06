@@ -228,8 +228,12 @@ SparkSession available as 'spark'.
 
 ```python
 >>> from arctern.util import save_png
->>> from arctern.util.vega import vega_pointmap
+>>> from arctern.util.vega import vega_pointmap, vega_weighted_pointmap, vega_heatmap, vega_choroplethmap, vega_icon
 >>> from arctern_pyspark import pointmap
+>>> from arctern_pyspark import weighted_pointmap
+>>> from arctern_pyspark import heatmap
+>>> from arctern_pyspark import choroplethmap
+>>> from arctern_pyspark import icon_viz
 ```
 
 通过 Arctern-Spark 提供的绘图函数绘制点图图层：
