@@ -1,6 +1,6 @@
 # fishnet_map_layer
 
-绘制一个鱼网图，需要先后调用 vega_fishnetmap 和 fishnet_map_layer 两个接口，首先使用 vega_fishnetmap 构建描述鱼网图渲染样式的 VegaFishNetMap 对象，然后使用 fishnet_map_layer 渲染图像。
+绘制一个鱼网图。需要先后调用 vega_fishnetmap 和 fishnet_map_layer 两个接口。首先使用 vega_fishnetmap 构建描述鱼网图渲染样式的 VegaFishNetMap 对象，然后使用 fishnet_map_layer 渲染图像。
 
 ## vega_fishnetmap 
 
@@ -19,9 +19,9 @@ cell_size,cell_spacing,opacity,coordinate_system,aggregation_type)**
 
 &#x2002; &#x2003; &#x2002; &#x2003; * color_gradient(list) -- 点的颜色渐变范围，表示形式为 ["hex_color"] 或 ["hex_color1", "hex_color2"]。当形式为["hex_color"] 时所有点的颜色相同。当形式为["hex_color1", "hex_color2"] 时点的颜色由输入数据中一列的值（权重）决定，且颜色在 "hex_color1" ~ "hex_color2" 之间变化。
 
-&#x2002; &#x2003; &#x2002; &#x2003; * cell_size(int) -- 可选参数，表示鱼网网格的宽，默认值为 4。
+&#x2002; &#x2003; &#x2002; &#x2003; * cell_size(int) -- 可选参数，表示鱼网网格的边长，单位为像素，默认值为 4。
 
-&#x2002; &#x2003; &#x2002; &#x2003; * cell_spacing(int) -- 可选参数，表示鱼网网格之间的间隔，默认值为 1。
+&#x2002; &#x2003; &#x2002; &#x2003; * cell_spacing(int) -- 可选参数，表示鱼网网格之间的间隔，单位为像素，默认值为 1。
 
 &#x2002; &#x2003; &#x2002; &#x2003; * opacity(float) -- 可选参数，表示点的不透明度，范围为 0.0 ~ 1.0，默认值为 1.0。
 
@@ -51,9 +51,9 @@ cell_size,cell_spacing,opacity,coordinate_system,aggregation_type)**
 
 &#x2002; &#x2003; &#x2002; &#x2003; * vega(VegaFishNetMap) -- VegaFishNetMap 对象。
 
-&#x2002; &#x2003; &#x2002; &#x2003; * points(Series(dtype: object)) -- 所需绘制的鱼网网格的位置，格式为WKB。
+&#x2002; &#x2003; &#x2002; &#x2003; * points(Series(dtype: object)) -- 鱼网网格所对应的数据点的位置，格式为WKB。
 
-&#x2002; &#x2003; &#x2002; &#x2003; * weights(Series(dtype: float64|int64)) -- 鱼网网格的颜色权重。
+&#x2002; &#x2003; &#x2002; &#x2003; * weights(Series(dtype: float64|int64)) -- 数据点的颜色权重。
 
 
 &#x2002; &#x2003; 返回值类型
