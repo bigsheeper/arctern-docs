@@ -51,7 +51,7 @@ cell_size,cell_spacing,opacity,coordinate_system,aggregation_type)**
 
 &#x2002; &#x2003; &#x2002; &#x2003; * vega(VegaFishNetMap) -- VegaFishNetMap 对象。
 
-&#x2002; &#x2003; &#x2002; &#x2003; * points(WKB) -- 鱼网网格所对应的数据点的位置，格式为WKB。
+&#x2002; &#x2003; &#x2002; &#x2003; * points(WKB) -- 数据点的位置，格式为WKB。
 
 &#x2002; &#x2003; &#x2002; &#x2003; * color_weights(int|float) -- 数据点的颜色权重。
 

@@ -436,28 +436,29 @@ eog /tmp/pointmap.png
 
 ```python
 >>> import requests
->>> 
 >>> payload = {\
     "scope": "nyc_taxi",\
-    "sql": "select ST_Point(pickup_longitude, pickup_latitude) as point from nyc_taxi where ST_Within(ST_Point(pickup_longitude, pickup_latitude), ST_GeomFromText('POLYGON ((-73.998427 40.730309, -73.954348 40.730309, -73.954348 40.780816 ,-73.998427 40.780816, -73.998427 40.730309))'))",\
+    "sql": "select ST_Point(pickup_longitude, pickup_latitude) as point from raw_data where ST_Within(ST_Point(pickup_longitude, pickup_latitude), ST_GeomFromText('POLYGON ((-73.9616334766551 40.704739019597156, -73.94232850242967 40.704739019597156, -73.94232850242967 40.728133570887906 ,-73.9616334766551 40.728133570887906, -73.9616334766551 40.704739019597156))')) limit 25",\
     "params": {\
-         "width": 1024,\
-         "height": 896,\
-        "bounding_box": [-75.37976, 40.191296, -71.714099, 41.897445],\
+        "width": 512,\
+        "height": 448,\
+        "bounding_box": [\
+            -73.9616334766551,\
+            40.704739019597156,\
+            -73.94232850242967,\
+            40.728133570887906\
+        ],\
         "coordinate_system": "EPSG:4326",\
         "icon_path": "path_to_icon_example.png"\
     }\
 }
->>>
->>> r = requests.post(url="http://127.0.0.1:8080/icon_viz", headers={"Content-Type": "application/json"}, data=payload)
+>>> 
+>>> r = requests.post(url="http://127.0.0.1:8080/icon_viz", json=payload)
 >>> 
 >>> # 保存为png
-... 
 >>> import base64
 >>> with open("/tmp/icon_viz.png", "wb") as f:
-...     f.write(base64.b64decode(r.json()['result']))
-... 
->>> 
+>>>     f.write(base64.b64decode(r.json()['result']))
 ```
 
 图标图样例：
@@ -471,9 +472,8 @@ eog /tmp/pointmap.png
 ```python
 >>> import requests
 >>> payload = {\
-    "scope": "scope1",\
-    "session": "spark",\
-    "sql": "SELECT ST_Point (pickup_longitude, pickup_latitude) AS point, total_amount AS color FROM nyc_taxi",\
+    "scope": "nyc_taxi",\
+    "sql": "SELECT ST_Point (pickup_longitude, pickup_latitude) AS point, total_amount AS color FROM raw_data where ST_Within(ST_Point(pickup_longitude, pickup_latitude), ST_GeomFromText('POLYGON ((-73.9616334766551 40.704739019597156, -73.94232850242967 40.704739019597156, -73.94232850242967 40.728133570887906 ,-73.9616334766551 40.728133570887906, -73.9616334766551 40.704739019597156))'))",\
     "params": {\
         "width": 512,\
         "height": 448,\
@@ -490,17 +490,17 @@ eog /tmp/pointmap.png
         "color_gradient": [\
             "#115f9a",\
             "#d0f400"\
-        ]\
+        ],\
+        "aggregation_type": "sum"\
     }\
 }
->>>
->>> r = requests.post(url="http://127.0.0.1:8080/fishnetmap", headers={"Content-Type": "application/json"}, data=payload)
 >>> 
+>>> r = requests.post(url="http://127.0.0.1:8080/fishnetmap", json=payload)
+>>> 
+>>> # 保存为png
 >>> import base64
 >>> with open("/tmp/fishnetmap.png", "wb") as f:
-...     f.write(base64.b64decode(r.json()['result']))
-... 
->>> 
+>>>     f.write(base64.b64decode(r.json()['result']))
 ```
 
 鱼网图样例：
