@@ -25,6 +25,7 @@ cell_size,cell_spacing,opacity,coordinate_system,aggregation_type)**
 
 &#x2002; &#x2003; &#x2002; &#x2003; * opacity(float) -- 可选参数，表示鱼网网格的不透明度，范围为 0.0 ~ 1.0，默认值为 1.0。
 
+
 &#x2002; &#x2003; &#x2002; &#x2003; * coordinate_system(str) -- 可选参数，表示输入数据所属的地理坐标系统，默认值为"EPSG:3857"，当前支持的地理坐标系统请参照 <https://spatialreference.org/>。
 
 &#x2002; &#x2003; &#x2002; &#x2003; * aggregation_type(str) -- 可选参数，表示输入数据到鱼网网格权重的聚合方式，默认值为"sum"。
