@@ -1,6 +1,6 @@
 # choroplehtmap
 
-绘制一个轮廓图，需要先后调用 vega_choroplethmap 和 choroplemap 两个接口，首先使用 vega_choroplethmap 构建描述轮廓图渲染样式的 VegaChoroplethMap 对象，然后使用 choroplemap 渲染图像。
+绘制一个轮廓图。需要先后调用 vega_choroplethmap 和 choroplemap 两个接口。首先使用 vega_choroplethmap 构建描述轮廓图渲染样式的 VegaChoroplethMap 对象，然后使用 choroplemap 渲染图像。
 
 ## vega_choroplethmap 
 
@@ -78,8 +78,8 @@ color_bound,opacity,coordinate_system,aggregation_type)**
       >>> 
       >>> # test_data.csv下载链接: https://github.com/zilliztech/arctern-resources/raw/benchmarks/benchmarks/dataset/layer_rendering_test_data/test_data.csv
       >>> table_df = spark.read.format("csv").option("header", True).option("delimiter", ",").schema(
-      >>>     "longitude double, latitude double, color_weights double, size_weights double, region_boundaries string").load(
-      >>>     "file:///tmp/test_data.csv").cache()
+      "longitude double, latitude double, color_weights double, size_weights double, region_boundaries string").load(
+      "file:///path/to/test_data.csv").cache()
       >>> table_df.createOrReplaceTempView("test_table")
       >>> 
       >>> register_funcs(spark)
