@@ -94,7 +94,7 @@ res = pointmap(vega, pickup_df)
 save_png(res, '/tmp/arctern_pointmap.png')
 
 
-# 在指定地理区域（经度范围：-73.991504 至 -73.945155；纬度范围：40.770759 至 40.783434）中随机选取`200`个坐标点，并将 fare_amount 作为颜色权重、total_amount 作为大小权重。
+# 在指定地理区域（经度范围：-73.991504 至 -73.945155；纬度范围：40.770759 至 40.783434）中随机选取 200 个坐标点，并将 fare_amount 作为颜色权重、total_amount 作为大小权重。
 pickup_sql = "select st_point(pickup_longitude, pickup_latitude) as point, fare_amount as color_weight, total_amount as size_weight from nyc_taxi where " \
 f"(pickup_longitude between {pos1[0]} and {pos2[0]}) and (pickup_latitude between {pos1[1]} and {pos2[1]}) limit {limit_num}"
 pickup_df = spark.sql(pickup_sql)
@@ -104,7 +104,7 @@ res = weighted_pointmap(vega, pickup_df)
 save_png(res, "/tmp/arctern_weighted_pointmap.png")
 
 
-# 在指定地理区域（经度范围：-73.991504 至 -73.945155；纬度范围：40.770759 至 40.783434）中随机选取`200`个坐标点，并将 fare_amount 作为热力值。
+# 在指定地理区域（经度范围：-73.991504 至 -73.945155；纬度范围：40.770759 至 40.783434）中随机选取 200 个坐标点，并将 fare_amount 作为热力值。
 pickup_sql = "select st_point(pickup_longitude, pickup_latitude) as point, fare_amount as weight from nyc_taxi where " \
 f"(pickup_longitude between {pos1[0]} and {pos2[0]}) and (pickup_latitude between {pos1[1]} and {pos2[1]}) limit {limit_num}"
 pickup_df = spark.sql(pickup_sql)
@@ -114,7 +114,7 @@ res = heatmap(vega, pickup_df)
 save_png(res, "/tmp/arctern_heatmap.png")
 
 
-# 在指定地理区域（经度范围：-73.991504 至 -73.945155；纬度范围：40.770759 至 40.783434）中随机选取`200`个坐标点，并将 fare_amount 作为颜色权重。
+# 在指定地理区域（经度范围：-73.991504 至 -73.945155；纬度范围：40.770759 至 40.783434）中随机选取 200 个坐标点，并将 fare_amount 作为颜色权重。
 pickup_sql = "select ST_GeomFromText(buildingtext_pickup) as buildings, fare_amount as color_weight from nyc_taxi where " \
 f"(pickup_longitude between {pos1[0]} and {pos2[0]}) and (pickup_latitude between {pos1[1]} and {pos2[1]}) and (buildingtext_pickup!='') limit {limit_num}"
 pickup_df = spark.sql(pickup_sql)
@@ -124,7 +124,7 @@ res = choroplethmap(vega, pickup_df)
 save_png(res, "/tmp/arctern_choroplethmap.png")
 
 
-# 在指定地理区域（经度范围：-73.991504 至 -73.945155；纬度范围：40.770759 至 40.783434）中随机选取`25`个坐标点。
+# 在指定地理区域（经度范围：-73.991504 至 -73.945155；纬度范围：40.770759 至 40.783434）中随机选取 25 个坐标点。
 pickup_sql = "select st_point(pickup_longitude, pickup_latitude) from nyc_taxi where " \
 f"(pickup_longitude between {pos1[0]} and {pos2[0]}) and (pickup_latitude between {pos1[1]} and {pos2[1]}) limit 25"
 pickup_df = spark.sql(pickup_sql)
@@ -135,7 +135,7 @@ res = icon_viz(vega, pickup_df)
 save_png(res, "/tmp/arctern_iconviz.png")
 
 
-# 在指定地理区域（经度范围：-73.991504 至 -73.945155；纬度范围：40.770759 至 40.783434）中随机选取`200`个坐标点，并将 fare_amount 作为颜色权重。
+# 在指定地理区域（经度范围：-73.991504 至 -73.945155；纬度范围：40.770759 至 40.783434）中随机选取 200 个坐标点，并将 fare_amount 作为颜色权重。
 pickup_sql = "select st_point(pickup_longitude, pickup_latitude) as point, fare_amount as weight from nyc_taxi where " \
 f"(pickup_longitude between {pos1[0]} and {pos2[0]}) and (pickup_latitude between {pos1[1]} and {pos2[1]}) limit {limit_num}"
 pickup_df = spark.sql(pickup_sql)
