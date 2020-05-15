@@ -11,13 +11,18 @@
 - Body:
 ```json
 {
-    "scope": "scope_name",
-    "session": "session_name",
-    "sql": "select ST_GeomFromText(col_wkb_polygon) as polygon, col2 as count from table_name",
+    "interpreter_type": "python",
+    "interpreter_name": "interpreter_name",
+    "notebook": "notebook_id",
+    "paragraph": "paragraph_id",
+    "input_data": {
+        "polygon": "polygon_series_name",
+        "weight": "weight_series_name"
+        },
     "params": {
         "width": 1024,
         "height": 896,
-        "bounding_box": [-75.37976, 40.191296, -71.714099, 41.897445],
+         "bounding_box": [-73.998427, 40.730309, -73.954348, 40.780816],
         "coordinate_system": "EPSG:4326",
         "color_gradient": ["#0000FF", "#FF0000"],
         "color_bound": [2.5, 5],
@@ -29,9 +34,11 @@
 
 参数说明：
 
-- scope：执行绘制轮廓图操作的作用域名称；
-- session：可选参数，执行绘制轮廓图操作的 `SparkSession` 名称；
-- sql：待执行的 SQL 查询语句，该查询的结果作为绘制轮廓图的渲染对象；
+- interpreter_type：解释器类型，此处为 "python"；
+- interpreter_name：配置了 arctern 环境的 python 解释器名称；
+- notebook：绘制轮廓图时的 notebook id；
+- paragraph：可选参数，绘制轮廓图时的 paragraph id，缺省时会自动创建一个新的 paragraph；
+- input_data：渲染轮廓图输入数据的参数名称。两个参数的类型均为 pandas.Series。polygon 为要渲染的轮廓 WKB 数据，weight 为轮廓所对应的权重值；
 - params：绘图参数，具体说明如下，详见 [Arctern-Spark 绘图接口文档](../../../spark/api/render/function/layer/choroplethmap.md)：
     - width：图片宽度；
     - height：图片高度；
@@ -56,31 +63,38 @@ pip install requests
 
 ```python
 import requests
-import json
 
 url = "http://localhost:8080/choroplethmap"
 
 payload  = {
-    "scope": "scope_name",
-    "session": "session_name",
-    "sql": "select ST_GeomFromText(col_wkb_polygon) as polygon, col2 as count from table_name",
+    "interpreter_type": "python",
+    "interpreter_name": "interpreter_name",
+    "notebook": "2F82DR4BR",
+    "paragraph": "paragraph_1589529262161_259189648",
+    "input_data": {
+        "polygon": "polygon",
+        "weight": "weight"
+        },
     "params": {
         "width": 1024,
         "height": 896,
-        "bounding_box": [-75.37976, 40.191296, -71.714099, 41.897445],
+         "bounding_box": [-73.998427, 40.730309, -73.954348, 40.780816],
         "coordinate_system": "EPSG:4326",
         "color_gradient": ["#0000FF", "#FF0000"],
         "color_bound": [2.5, 5],
-        "opacity": 1
+        "opacity": 1,
+        "aggregation_type": "sum"
     }
 }
 headers = {
   'Content-Type': 'application/json'
 }
 
-response = requests.request("POST", url, headers=headers, data=json.dumps(payload))
+response = requests.request("POST", url, headers=headers, data=payload)
 
-print(response.text.encode('utf8'))
+import base64
+with open("/tmp/choroplethmap.png", "wb") as f:
+    f.write(base64.b64decode(response.json()['result']))
 ```
 
 ### curl
@@ -89,9 +103,14 @@ print(response.text.encode('utf8'))
 curl --location --request POST 'http://localhost:8080/choroplethmap' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "scope": "scope_name",
-    "session": "session_name",
-    "sql": "select ST_GeomFromText(col_wkb_polygon) as polygon, col2 as count from table_name",
+    "interpreter_type": "python",
+    "interpreter_name": "interpreter_name",
+    "notebook": "notebook_id",
+    "paragraph": "paragraph_id",
+    "input_data": {
+        "polygon": "polygon_series_name",
+        "weight": "weight_series_name"
+        },
     "params": {
         "width": 1024,
         "height": 896,
