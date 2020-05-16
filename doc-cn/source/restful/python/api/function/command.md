@@ -1,6 +1,6 @@
 # 代码执行
 
-在指定作用域( `scope` )内执行给定的 python 代码。`scope`  用于隔离Python代码执行的上下文，使用不同 `scope` 执行代码，则代码中的变量相互不影响。如需在先后执行的代码中保持相同的上下文，则需使用相同的`scope`。
+在指定笔记本中执行给定的 python 代码。`scope`  用于隔离Python代码执行的上下文，使用不同 `scope` 执行代码，则代码中的变量相互不影响。如需在先后执行的代码中保持相同的上下文，则需使用相同的`scope`。
 
 ## 请求说明
 
@@ -11,14 +11,18 @@
 - Body:
 ```json
 {
-    "scope": "scope_name",
+    "interpreter_type": "interpreter_type",
+    "interpreter_name": "interpreter_name",
+    "notebook": "notebook_id",
     "command": "import sys\nprint(len(sys.argv))"
 }
 ```
 
 参数说明：
 
-- scope：该字段指明在哪一个作用域内执行 command；
+- interpreter_type：解释器类型，此处为 "python"；
+- interpreter_name：配置了 arctern 环境的 python 解释器名称；
+- notebook：笔记本的 id；
 - command：待执行的 `python` 代码。
 
 ## 样例
@@ -40,7 +44,9 @@ import json
 url = "http://localhost:8080/command"
 
 payload = {
-    "scope": "scope_name",
+    "interpreter_type": "interpreter_type",
+    "interpreter_name": "interpreter_name",
+    "notebook": "notebook_id",
     "command": "import sys\nprint(len(sys.argv))"
 }
 headers = {
@@ -58,7 +64,9 @@ print(response.text.encode('utf8'))
 curl --location --request POST 'http://localhost:8080/command' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-	"scope":"scope_name",
+    "interpreter_type": "interpreter_type",
+    "interpreter_name": "interpreter_name",
+    "notebook": "notebook_id",
 	"comamnd":"import sys\nprint(len(sys.argv))"
 }'
 ```

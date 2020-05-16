@@ -1,4 +1,4 @@
-# 获取表的列信息
+# 获取表的列信息 (TODO:: use interpreter, remove scope)
 
 获取数据表各列的名称与数据类型信息。
 

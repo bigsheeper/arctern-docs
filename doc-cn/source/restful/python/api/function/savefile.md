@@ -11,8 +11,9 @@
 - Body:
 ```json
 {
-    "scope": "scope_name",
-    "session": "session_name", 
+    "interpreter_type": "interpreter_type",
+    "interpreter_name": "interpreter_name",
+    "notebook": "notebook_id",
     "tables": [
         {
             "sql": "select * from table_name",
@@ -29,8 +30,9 @@
 
 参数说明：
 
-- scope：执行保存文件操作的作用域名称；
-- session：可选参数，执行保存文件操作的 `SparkSession` 名称；
+- interpreter_type：解释器类型，此处为 "python"；
+- interpreter_name：配置了 arctern 环境的 python 解释器名称；
+- notebook：笔记本的 id；
 - tables：将数据保存为文件时的描述信息，该字段为一个列表( `list` )，系统将会按照列表中的顺序依次进行文件保存操作，以下为列表中每个元素的具体参数说明：
     - sql：待执行的 SQL 查询语句，该语句的结果将作为要保存的表；
     - format：待保存的文件格式；
@@ -56,8 +58,9 @@ import json
 url = "http://localhost:8080/savefile"
 
 payload = {
-    "scope": "scope_name",
-    "session": "session_name", 
+    "interpreter_type": "interpreter_type",
+    "interpreter_name": "interpreter_name",
+    "notebook": "notebook_id",
     "tables": [
         {
             "sql": "select * from table_name",
@@ -85,8 +88,9 @@ print(response.text.encode('utf8'))
 curl --location --request POST 'http://localhost:8080/savefile' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "scope": "scope_name",
-    "session": "session_name", 
+    "interpreter_type": "interpreter_type",
+    "interpreter_name": "interpreter_name",
+    "notebook": "notebook_id",
     "tables": [
         {
             "sql": "select * from table_name",
