@@ -11,8 +11,6 @@
 - Body:
 ```json
 {
-    "scope": "scope_name",
-    "session": "session_name",
     "sql": "select ST_Point(col2, col2) as point from table_name",
     "params": {
         "width": 1024,
@@ -26,8 +24,6 @@
 
 参数说明：
 
-- scope：执行绘制图标图操作的作用域名称；
-- session：可选参数，执行绘制图标图操作的 `SparkSession` 名称；
 - sql：待执行的 SQL 查询语句，该查询的结果作为绘制图标图的渲染对象；
 - params：绘图参数，具体说明如下，详见 [Arctern-Spark 绘图接口文档](../../../spark/api/render/function/layer/iconviz.md)：
     - width：图片宽度；
@@ -36,7 +32,7 @@
     - icon_path：png 图标文件的绝对路径；
     - coordinate_system：输入数据的坐标系统，详见 [World Geodetic System](https://en.wikipedia.org/wiki/World_Geodetic_System)；
 
-## 样例
+## 请求样例
 
 ### Python
 
@@ -55,8 +51,6 @@ import json
 url = "http://localhost:8080/icon_viz"
 
 payload  = {
-    "scope": "scope_name",
-    "session": "session_name",
     "sql": "select ST_Point(col2, col2) as point from table_name",
     "params": {
         "width": 1024,
@@ -81,8 +75,6 @@ print(response.text.encode('utf8'))
 curl --location --request POST 'http://localhost:8080/icon_viz' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "scope": "scope_name",
-    "session": "session_name",
     "sql": "select ST_Point(col2, col2) as point from table_name",
     "params": {
         "width": 1024,
@@ -94,9 +86,7 @@ curl --location --request POST 'http://localhost:8080/icon_viz' \
 }'
 ```
 
-## 返回说明
-
-成功样例：
+## 响应样例
 
 ```json
 {
@@ -105,15 +95,3 @@ curl --location --request POST 'http://localhost:8080/icon_viz' \
     "result": "使用 base64 编码后的图标图数据"
 }
 ```
-
-失败样例：
-
-```json
-{
-    "code": -1,
-    "message": "Table or view not found: error_table; line 1 pos 14;\n'Project [*]\n+- 'UnresolvedRelation [error_table]\n",
-    "status": "error"
-}
-```
-
-
