@@ -31,6 +31,12 @@
 }
 ```
 
+主要参数说明：
+
+- "name"：笔记本名称；
+- "paragraphs"."title"：段落的标题;
+- "paragraphs"."text"：段落中的代码。
+
 ## 样例
 
 ### Python

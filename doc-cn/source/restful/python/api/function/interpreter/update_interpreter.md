@@ -29,7 +29,7 @@
             "description": "Python binary executable path. It is set to python by default.(assume python is in your $PATH)",
             "name": "zeppelin.python",
             "type": "string",
-            "value": "python_path"
+            "value": "/path/to/python_interpreter"
         }
     },
     "option": {
@@ -45,6 +45,11 @@
 }
 ```
 
+主要参数说明：
+
+- "name"：解释器名称；
+- "properties"."zeppelin.python"."value"：配置了 arctern 环境的 python 解释器的绝对路径。
+
 ## 样例
 
 ### Python
@@ -57,7 +62,7 @@ pip install requests
 
 调用示例
 
-- 更新解释器 python1 的路径
+- 更新 id 为"2AYW25ANY"的解释器的路径
 
 ```python
 import requests
@@ -85,7 +90,7 @@ payload = {
             "description": "Python binary executable path. It is set to python by default.(assume python is in your $PATH)",
             "name": "zeppelin.python",
             "type": "string",
-            "value": "python_path2"
+            "value": "new /path/to/python_interpreter"
         }
     },
     "option": {
@@ -110,7 +115,7 @@ print(response.text.encode('utf8'))
 
 ### curl
 
-- 更新解释器 python1 的路径
+- 更新 id 为"2AYW25ANY"的解释器的路径
 
 ```shell
 curl --location --request PUT 'http://localhost:8080/interpreter/setting/2AYW25ANY' \
@@ -136,7 +141,7 @@ curl --location --request PUT 'http://localhost:8080/interpreter/setting/2AYW25A
             "description": "Python binary executable path. It is set to python by default.(assume python is in your $PATH)",
             "name": "zeppelin.python",
             "type": "string",
-            "value": "python_path2"
+            "value": "new /path/to/python_interpreter"
         }
     },
     "option": {

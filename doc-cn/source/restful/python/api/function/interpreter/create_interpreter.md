@@ -29,7 +29,7 @@
             "description": "Python binary executable path. It is set to python by default.(assume python is in your $PATH)",
             "name": "zeppelin.python",
             "type": "string",
-            "value": "python_path"
+            "value": "/path/to/python_interpreter"
         }
     },
     "option": {
@@ -44,6 +44,11 @@
     }
 }
 ```
+
+主要参数说明：
+
+- "name"：解释器名称；
+- "properties"."zeppelin.python"."value"：配置了 arctern 环境的 python 解释器的绝对路径。
 
 ## 样例
 
@@ -85,7 +90,7 @@ payload = {
             "description": "Python binary executable path. It is set to python by default.(assume python is in your $PATH)",
             "name": "zeppelin.python",
             "type": "string",
-            "value": "python_path"
+            "value": "/path/to/python_interpreter"
         }
     },
     "option": {
@@ -136,7 +141,7 @@ curl --location --request POST 'http://localhost:8080/interpreter/setting' \
             "description": "Python binary executable path. It is set to python by default.(assume python is in your $PATH)",
             "name": "zeppelin.python",
             "type": "string",
-            "value": "python_path"
+            "value": "/path/to/python_interpreter"
         }
     },
     "option": {
