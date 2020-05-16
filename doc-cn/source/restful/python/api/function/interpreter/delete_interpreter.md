@@ -19,7 +19,7 @@ pip install requests
 
 调用示例
 
-- 删除解释器 python1
+- 删除 id 为"2AYW25ANY"的解释器
 
 ```python
 import requests
@@ -37,7 +37,8 @@ print(response.text.encode('utf8'))
 
 ### curl
 
-- 删除解释器 python1
+- 删除 id 为"2AYW25ANY"的解释器
+
 ```shell
 curl --location --request DELETE 'http://localhost:8080/interpreter/setting/2AYW25ANY' \
 --header 'Content-Type: application/json'
