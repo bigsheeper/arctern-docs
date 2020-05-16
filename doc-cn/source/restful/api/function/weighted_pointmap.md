@@ -9,9 +9,16 @@
 - Headers:
     - `Content-Type: application/json`
 - Body:
+
+如果数据处理后台为 python, 则示例 json 如下：
+
 ```json
 {
-    "sql": "select ST_Point(col2, col2) as point, col2 as count1, col2 as count2 from table_name",
+    "input_data": {
+        "points": "ST_Point(raw_data.pickup_longitude, raw_data.pickup_latitude)",
+        "color_weights": "raw_data.fare_amount",
+        "size_weights": "raw_data.total_amount"
+    },
     "params": {
             "width": 1024,
             "height": 896,
@@ -23,6 +30,11 @@
             "coordinate_system": "EPSG:4326"
     }
 }
+```
+
+若数据处理后台为 pyspark, 则需将 input_data 改为如下内容：
+```
+"sql": "select ST_Point(col2, col2) as point, col2 as count1, col2 as count2 from table_name"
 ```
 
 参数说明：
@@ -57,7 +69,11 @@ import json
 url = "http://localhost:8080/weighted_pointmap"
 
 payload = {
-    "sql": "select ST_Point(col2, col2) as point, col2 as count1, col2 as count2 from table_name",
+    "input_data": {
+        "points": "ST_Point(raw_data.pickup_longitude, raw_data.pickup_latitude)",
+        "color_weights": "raw_data.fare_amount",
+        "size_weights": "raw_data.total_amount"
+    },
     "params": {
             "width": 1024,
             "height": 896,
@@ -84,7 +100,11 @@ print(response.text.encode('utf8'))
 curl --location --request POST 'http://localhost:8080/weighted_pointmap' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "sql": "select ST_Point(col2, col2) as point, col2 as count1, col2 as count2 from table_name",
+    "input_data": {
+        "points": "ST_Point(raw_data.pickup_longitude, raw_data.pickup_latitude)",
+        "color_weights": "raw_data.fare_amount",
+        "size_weights": "raw_data.total_amount"
+    },
     "params": {
             "width": 1024,
             "height": 896,

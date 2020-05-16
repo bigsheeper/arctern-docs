@@ -9,9 +9,15 @@
 - Headers:
     - `Content-Type: application/json`
 - Body:
+
+如果数据处理后台为 python, 则示例 json 如下：
+
 ```json
 {
-    "sql": "select ST_Point(col2, col2) as point, col2 as count from table_name",
+    "input_data": {
+        "points": "ST_Point(raw_data.pickup_longitude, raw_data.pickup_latitude)",
+        "weights": "raw_data.fare_amount"
+    },
     "params": {
             "width": 1024,
             "height": 896,
@@ -24,6 +30,11 @@
             "aggregation_type": "sum"
     }
 }
+```
+
+若数据处理后台为 pyspark, 则需将 input_data 改为如下内容：
+```
+"sql": "select ST_Point(col2, col2) as point, col2 as count from table_name"
 ```
 
 参数说明：
@@ -60,7 +71,10 @@ import json
 url = "http://localhost:8080/fishnetmap"
 
 payload = {
-    "sql": "select ST_Point(col2, col2) as point, col2 as count from table_name",
+    "input_data": {
+        "points": "ST_Point(raw_data.pickup_longitude, raw_data.pickup_latitude)",
+        "weights": "raw_data.fare_amount"
+    },
     "params": {
             "width": 1024,
             "height": 896,
@@ -88,7 +102,10 @@ print(response.text.encode('utf8'))
 curl --location --request POST 'http://localhost:8080/fishnetmap' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "sql": "select ST_Point(col2, col2) as point, col2 as count from table_name",
+    "input_data": {
+        "points": "ST_Point(raw_data.pickup_longitude, raw_data.pickup_latitude)",
+        "weights": "raw_data.fare_amount"
+    },
     "params": {
             "width": 1024,
             "height": 896,
