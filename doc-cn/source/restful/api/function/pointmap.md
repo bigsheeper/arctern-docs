@@ -45,7 +45,7 @@
     - coordinate_system：输入数据的坐标系统，详见 [World Geodetic System](https://en.wikipedia.org/wiki/World_Geodetic_System)；
     - point_size：点的大小；
     - point_color：点的颜色；
-    - opacity：点的不透明度；
+    - opacity：点的不透明度。
 
 ## 请求样例
 
