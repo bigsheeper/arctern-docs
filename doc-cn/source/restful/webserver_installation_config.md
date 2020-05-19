@@ -93,7 +93,7 @@ Arctern RESTful Server 的配置文件 `config.ini` 所在目录可通过如下 
 
 ```ini
 [zeppelin]
-zeppelin-server = localhost
+zeppelin-host = localhost
 zeppelin-port = 8888
 
 [interpreter]
@@ -104,7 +104,7 @@ python-path = /path/to/python
 
 [zeppelin] 字段说明如下：
 
-- `zeppelin.zeppelin-server`： Zeppelin 后台的 IP 地址；
+- `zeppelin.zeppelin-host`： Zeppelin 后台的 IP 地址；
 - `zeppelin.zeppelin-port`： Zeppelin 后台的端口号。
 
 [interpreter] 字段说明如下：
