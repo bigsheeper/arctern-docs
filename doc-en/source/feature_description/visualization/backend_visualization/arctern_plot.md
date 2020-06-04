@@ -147,7 +147,7 @@ arctern.plot.choroplethmap(ax,
 Download an icon image that will be used later to draw icon maps:
 
 ```bash
-wget https://raw.githubusercontent.com/zilliztech/arctern-docs/branch-0.2.x/img/icon/arctern-icon-small.png -o /tmp/arctern-logo.png
+wget https://raw.githubusercontent.com/zilliztech/arctern-docs/branch-0.2.x/img/icon/icon.png -o /tmp/icon.png
 ```
 
 Use the `plot.iconviz` function of Arctern to draw an icon map based on the taxi trip record data. The position of each icon is defined by the pickup location.
@@ -156,7 +156,7 @@ Use the `plot.iconviz` function of Arctern to draw an icon map based on the taxi
 fig, ax = plt.subplots(figsize=(10, 6), dpi=200)
 arctern.plot.iconviz(ax, 
                      arctern.GeoSeries.point(df.pickup_longitude,df.pickup_latitude),
-                     icon_path="/tmp/arctern-logo.png", 
+                     icon_path="/tmp/icon.png", 
                      bounding_box=bbox,
                      coordinate_system="EPSG:4326")
 ```

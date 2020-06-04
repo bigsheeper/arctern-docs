@@ -147,7 +147,7 @@ arctern.plot.choroplethmap(ax,
 执行以下命令下载图标，你将用此图标绘制图标图。
 
 ```bash
-wget https://raw.githubusercontent.com/zilliztech/arctern-docs/branch-0.2.x/img/icon/arctern-icon-small.png -o /tmp/arctern-logo.png
+wget https://raw.githubusercontent.com/zilliztech/arctern-docs/branch-0.2.x/img/icon/icon.png -o /tmp/icon.png
 ```
 
 使用 Arctern 的 `plot.iconviz` 方法根据出租车运营数绘制带地图背景的图标图。其中，图标的位置为上车地点。
@@ -156,7 +156,7 @@ wget https://raw.githubusercontent.com/zilliztech/arctern-docs/branch-0.2.x/img/
 fig, ax = plt.subplots(figsize=(10, 6), dpi=200)
 arctern.plot.iconviz(ax, 
                      arctern.GeoSeries.point(df.pickup_longitude,df.pickup_latitude),
-                     icon_path="/tmp/arctern-logo.png", 
+                     icon_path="/tmp/icon.png", 
                      bounding_box=bbox,
                      coordinate_system="EPSG:4326")
 ```
